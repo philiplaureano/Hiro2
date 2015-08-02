@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hiro2", "Hiro2.csproj", "{D9A7655B-3D99-4276-AC0A-3E0A902DD0D7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hiro2.Interfaces", "..\Hiro2.Interfaces\Hiro2.Interfaces.csproj", "{5ABDE731-AC85-458E-B5F7-FE7B81993883}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hiro2.Tests", "Hiro2.Tests\Hiro2.Tests.csproj", "{D2385B11-2878-413B-A15F-F9C52F8BADAA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D9A7655B-3D99-4276-AC0A-3E0A902DD0D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9A7655B-3D99-4276-AC0A-3E0A902DD0D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9A7655B-3D99-4276-AC0A-3E0A902DD0D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9A7655B-3D99-4276-AC0A-3E0A902DD0D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5ABDE731-AC85-458E-B5F7-FE7B81993883}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5ABDE731-AC85-458E-B5F7-FE7B81993883}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5ABDE731-AC85-458E-B5F7-FE7B81993883}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5ABDE731-AC85-458E-B5F7-FE7B81993883}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2385B11-2878-413B-A15F-F9C52F8BADAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2385B11-2878-413B-A15F-F9C52F8BADAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2385B11-2878-413B-A15F-F9C52F8BADAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2385B11-2878-413B-A15F-F9C52F8BADAA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
