@@ -40,7 +40,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constructor.cs" />
+    <Compile Include="Dependency.cs" />
+    <Compile Include="EnumerableInstantiationPoint.cs" />
+    <Compile Include="GenericType.cs" />
+    <Compile Include="GenericTypeInstantiation.cs" />
+    <Compile Include="IDependency.cs" />
+    <Compile Include="IInstantiationPoint.cs" />
+    <Compile Include="InstantiationPoint.cs" />
+    <Compile Include="IResolver.cs" />
+    <Compile Include="IServiceRegistry.cs" />
+    <Compile Include="ISingletonInstance.cs" />
+    <Compile Include="ITransientInstance.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resolver.cs" />
+    <Compile Include="ServiceRegistry.cs" />
+    <Compile Include="SingletonInstantiationPoint.cs" />
+    <Compile Include="TransientInstantiationPoint.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Hiro2.Interfaces\Hiro2.Interfaces.csproj">
+      <Project>{5abde731-ac85-458e-b5f7-fe7b81993883}</Project>
+      <Name>Hiro2.Interfaces</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
