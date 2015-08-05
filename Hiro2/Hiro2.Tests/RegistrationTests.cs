@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Hiro2.Tests.SampleDomains.ConstructorResolution;
+
 using NUnit.Framework;
 using Shouldly;
 
