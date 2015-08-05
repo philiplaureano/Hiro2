@@ -51,6 +51,12 @@
     <Compile Include="RegistrationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResolverTests.cs" />
+    <Compile Include="SampleDomains\Generics\ClassWithGenericDependency.cs" />
+    <Compile Include="SampleDomains\Vehicles\Car.cs" />
+    <Compile Include="SampleDomains\Vehicles\IEngine.cs" />
+    <Compile Include="SampleDomains\Vehicles\IVehicle.cs" />
+    <Compile Include="SampleDomains\Vehicles\MultiEngineCar.cs" />
+    <Compile Include="SampleDomains\Vehicles\StockEngine.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

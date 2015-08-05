@@ -25,5 +25,7 @@ namespace Hiro2
         {
             return _actualPoint.GetResolvedDependencies();
         }
+
+        public IInstantiationPoint ActualPoint => _actualPoint;
     }
 }
