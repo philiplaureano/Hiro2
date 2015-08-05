@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Hiro2.Interfaces;
+using Microsoft.Practices.ServiceLocation;
 
 namespace Hiro2
 {
