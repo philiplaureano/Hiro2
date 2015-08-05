@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Hiro2.Tests.SampleDomains.ConstructorResolution;
 using Hiro2.Tests.SampleDomains.Generics;
 using Hiro2.Tests.SampleDomains.Vehicles;
 using NUnit.Framework;
@@ -45,6 +47,28 @@ namespace Hiro2.Tests
             var constructor = (targetPoint as TransientInstantiationPoint)?.ActualPoint as Constructor;
             constructor.ShouldNotBe(null);
             constructor.ConstructorInfo.DeclaringType.ShouldBe(typeof(CarWithNoEngine));
+        }
+
+        [Test]
+        public void Should_resolve_constructor_with_most_number_of_resolvable_parameters()
+        {
+            _registry.RegisterGeneric(typeof(ICollection<>), typeof(List<>));
+            _registry.Register<ISampleInterface, ClassWithMultipleResolvableConstructors>();
+
+            var map = GetServiceMap();
+
+            var targetDependency = new Dependency(typeof(ISampleInterface));
+            map.ContainsKey(targetDependency)
+                .ShouldBe(true);
+
+            var targetPoint = map[targetDependency];
+            targetPoint.ShouldBeOfType<TransientInstantiationPoint>();
+
+            var constructor = (targetPoint as TransientInstantiationPoint)?.ActualPoint as Constructor;
+            constructor.ShouldNotBe(null);
+
+            var constructorInfo = constructor.ConstructorInfo;
+            constructorInfo.GetParameters().Count().ShouldBe(2);
         }
 
         [Test]

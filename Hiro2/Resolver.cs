@@ -161,11 +161,22 @@ namespace Hiro2
                 pointsGroupedByDependency.Remove(dependency);
             }
 
-            var newlyAvailableServices = updatedPoints.Where(p => p.CanBeResolvedFrom(availableServices.Keys)).ToArray();
+            var newlyAvailableServices = updatedPoints.Where(p => p.CanBeResolvedFrom(availableServices.Keys))
+                .OrderBy(p => p.GetRequiredDependencies().Count()).ToArray();
+
             foreach (var point in newlyAvailableServices)
             {
                 var currentDependency = point.Dependency;
-                availableServices[currentDependency] = point;
+
+                var bestMatch = point;
+                if (availableServices.ContainsKey(currentDependency))
+                {
+                    var existingPoint = availableServices[currentDependency];
+                    if (point.GetRequiredDependencies().Count() > existingPoint.GetRequiredDependencies().Count())
+                        bestMatch = point;
+                }
+
+                availableServices[currentDependency] = bestMatch;
             }
 
             return newlyAvailableServices.Length;
