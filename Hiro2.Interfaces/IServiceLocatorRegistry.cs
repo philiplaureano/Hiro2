@@ -10,11 +10,12 @@ namespace Hiro2.Interfaces
         void Register<TConcreteType>();
         void Register<TInterface, TImplementation>() where TImplementation : TInterface;
         void Register<TInterface>(Func<IServiceLocator, TInterface> factoryMethod);
+        void Register<TInterface>(Func<IServiceLocator, TInterface> factoryMethod, string serviceName);
         void RegisterSingleton<TInterface>(Func<IServiceLocator, TInterface> factoryMethod);
+        void RegisterSingleton<TInterface>(Func<IServiceLocator, TInterface> factoryMethod, string serviceName);
         void RegisterSingleton<TInterface, TImplementation>() where TImplementation : TInterface;
         void RegisterGeneric(Type serviceType, Type implementingType);
         void RegisterGenericSingleton(Type serviceType, Type implementingType);
         void Register<TInterface, TImplementation>(string name) where TImplementation : TInterface;
-        void Register<TInterface>(Func<IServiceLocator, TInterface> factoryMethod, string serviceName);
     }
 }

@@ -34,12 +34,22 @@ namespace Hiro2
             AddPointsAsTransient<TInterface, TImplementation>(dependency);
         }
 
+        public void Register<TInterface>(Func<IServiceLocator, TInterface> factoryMethod, string serviceName)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Register<TInterface>(Func<IServiceLocator, TInterface> factoryMethod)
         {
             throw new NotImplementedException();
         }
 
         public void RegisterSingleton<TInterface>(Func<IServiceLocator, TInterface> factoryMethod)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RegisterSingleton<TInterface>(Func<IServiceLocator, TInterface> factoryMethod, string serviceName)
         {
             throw new NotImplementedException();
         }
@@ -66,11 +76,6 @@ namespace Hiro2
             var dependency = new Dependency(dependencyType, name);
 
             AddPointsAsTransient<TInterface, TImplementation>(dependency);
-        }
-
-        public void Register<TInterface>(Func<IServiceLocator, TInterface> factoryMethod, string serviceName)
-        {
-            throw new NotImplementedException();
         }
 
         public IDictionary<IDependency, ICollection<IInstantiationPoint>> GetAllRegisteredPoints()
