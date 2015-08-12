@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using Microsoft.Practices.ServiceLocation;
 
 namespace Hiro2
 {
@@ -27,5 +29,21 @@ namespace Hiro2
         }
 
         public IInstantiationPoint ActualPoint => _actualPoint;
+    }
+
+    public class FunctorInstantiationPoint : InstantiationPoint
+    {
+
+        public FunctorInstantiationPoint(IDependency dependency, Func<IServiceLocator, object> factoryMethod) : base(dependency)
+        {
+            FactoryMethod = factoryMethod;
+        }
+
+        public Func<IServiceLocator, object> FactoryMethod { get; }
+
+        public override IEnumerable<IDependency> GetRequiredDependencies()
+        {
+            yield break;
+        }
     }
 }

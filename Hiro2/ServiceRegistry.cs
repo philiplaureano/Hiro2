@@ -36,22 +36,38 @@ namespace Hiro2
 
         public void Register<TInterface>(Func<IServiceLocator, TInterface> factoryMethod, string serviceName)
         {
-            throw new NotImplementedException();
+            var dependency = new Dependency(typeof(TInterface), serviceName);
+            if (!_points.ContainsKey(dependency))
+                _points[dependency] = new List<IInstantiationPoint>();
+
+            _points[dependency].Add(new TransientInstantiationPoint(new FunctorInstantiationPoint(dependency, locator => factoryMethod(locator))));
         }
 
         public void Register<TInterface>(Func<IServiceLocator, TInterface> factoryMethod)
         {
-            throw new NotImplementedException();
+            var dependency = new Dependency(typeof(TInterface));
+            if (!_points.ContainsKey(dependency))
+                _points[dependency] = new List<IInstantiationPoint>();
+
+            _points[dependency].Add(new TransientInstantiationPoint(new FunctorInstantiationPoint(dependency, locator => factoryMethod(locator))));
         }
 
         public void RegisterSingleton<TInterface>(Func<IServiceLocator, TInterface> factoryMethod)
         {
-            throw new NotImplementedException();
+            var dependency = new Dependency(typeof(TInterface));
+            if (!_points.ContainsKey(dependency))
+                _points[dependency] = new List<IInstantiationPoint>();
+
+            _points[dependency].Add(new SingletonInstantiationPoint(new FunctorInstantiationPoint(dependency, locator => factoryMethod(locator))));
         }
 
         public void RegisterSingleton<TInterface>(Func<IServiceLocator, TInterface> factoryMethod, string serviceName)
         {
-            throw new NotImplementedException();
+            var dependency = new Dependency(typeof(TInterface), serviceName);
+            if (!_points.ContainsKey(dependency))
+                _points[dependency] = new List<IInstantiationPoint>();
+
+            _points[dependency].Add(new SingletonInstantiationPoint(new FunctorInstantiationPoint(dependency, locator => factoryMethod(locator))));
         }
 
         public void RegisterSingleton<TInterface, TImplementation>() where TImplementation : TInterface

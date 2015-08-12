@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Hiro2.Tests.SampleDomains.ConstructorResolution;
-
+using Microsoft.Practices.ServiceLocation;
 using NUnit.Framework;
 using Shouldly;
 
@@ -96,6 +96,73 @@ namespace Hiro2.Tests
             points.OfType<TransientInstantiationPoint>().All(p => p.ActualPoint is GenericType).ShouldBe(true);
         }
 
+        [Test]
+        public void Should_create_functor_points()
+        {
+            var someList = new List<int>();
+            Func<IServiceLocator, IList<int>> functor = locator => someList;
+            _registry.Register(functor);
+
+            var points = _registry.GetAllRegisteredPoints().SelectMany(list => list.Value).ToArray();
+            var targetPoint = points.OfType<TransientInstantiationPoint>()
+                .Where(p => p.ActualPoint is FunctorInstantiationPoint)
+                .Select(p => p.ActualPoint as FunctorInstantiationPoint)
+                .First();
+
+            targetPoint.FactoryMethod(null).ShouldBe(functor(null));
+            targetPoint.Dependency.DependencyType.ShouldBe(typeof(IList<int>));
+        }
+        [Test]
+        public void Should_create_named_functor_points()
+        {
+            var someList = new List<int>();
+            Func<IServiceLocator, IList<int>> functor = locator => someList;
+            _registry.Register(functor, "foo");
+
+            var points = _registry.GetAllRegisteredPoints().SelectMany(list => list.Value).ToArray();
+            var targetPoint = points.OfType<TransientInstantiationPoint>()
+                .Where(p => p.ActualPoint is FunctorInstantiationPoint)
+                .Select(p => p.ActualPoint as FunctorInstantiationPoint)
+                .First();
+
+            targetPoint.FactoryMethod(null).ShouldBe(functor(null));
+            targetPoint.Dependency.DependencyType.ShouldBe(typeof(IList<int>));
+            targetPoint.Dependency.Name.ShouldBe("foo");
+        }
+
+        [Test]
+        public void Should_create_singleton_functor_points()
+        {
+            var someList = new List<int>();
+            Func<IServiceLocator, IList<int>> functor = locator => someList;
+            _registry.RegisterSingleton(functor);
+
+            var points = _registry.GetAllRegisteredPoints().SelectMany(list => list.Value).ToArray();
+            var targetPoint = points.OfType<SingletonInstantiationPoint>()
+                .Where(p => p.ActualPoint is FunctorInstantiationPoint)
+                .Select(p => p.ActualPoint as FunctorInstantiationPoint)
+                .First();
+
+            targetPoint.FactoryMethod(null).ShouldBe(functor(null));
+            targetPoint.Dependency.DependencyType.ShouldBe(typeof(IList<int>));
+        }
+        [Test]
+        public void Should_create_named_singleton_functor_points()
+        {
+            var someList = new List<int>();
+            Func<IServiceLocator, IList<int>> functor = locator => someList;
+            _registry.RegisterSingleton(functor, "foo");
+
+            var points = _registry.GetAllRegisteredPoints().SelectMany(list => list.Value).ToArray();
+            var targetPoint = points.OfType<SingletonInstantiationPoint>()
+                .Where(p => p.ActualPoint is FunctorInstantiationPoint)
+                .Select(p => p.ActualPoint as FunctorInstantiationPoint)
+                .First();
+
+            targetPoint.FactoryMethod(null).ShouldBe(functor(null));
+            targetPoint.Dependency.DependencyType.ShouldBe(typeof(IList<int>));
+            targetPoint.Dependency.Name.ShouldBe("foo");
+        }
         private IServiceRegistry GetRegistry()
         {
             return new ServiceRegistry();
