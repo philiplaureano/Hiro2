@@ -45,13 +45,16 @@
   <ItemGroup>
     <Compile Include="Constructor.cs" />
     <Compile Include="Dependency.cs" />
+    <Compile Include="DependencyMap.cs" />
     <Compile Include="EnumerableInstantiationPoint.cs" />
+    <Compile Include="FactoryMap.cs" />
     <Compile Include="GenericType.cs" />
     <Compile Include="GenericTypeInstantiation.cs" />
     <Compile Include="IDependency.cs" />
     <Compile Include="IDependencyMap.cs" />
     <Compile Include="IFactoryMap.cs" />
     <Compile Include="IInstantiationPoint.cs" />
+    <Compile Include="IMap.cs" />
     <Compile Include="InstantiationPoint.cs" />
     <Compile Include="IResolver.cs" />
     <Compile Include="IServiceRegistry.cs" />

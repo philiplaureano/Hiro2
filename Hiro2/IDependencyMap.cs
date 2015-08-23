@@ -2,11 +2,7 @@ using System.Collections.Generic;
 
 namespace Hiro2
 {
-    public interface IDependencyMap
+    public interface IDependencyMap : IMap<IDependency, IInstantiationPoint>
     {
-        bool Contains(IDependency dependency);
-
-        IEnumerable<IDependency> Dependencies { get; }
-        IInstantiationPoint GetInstantiationPoint(IDependency dependency);
     }
 }
