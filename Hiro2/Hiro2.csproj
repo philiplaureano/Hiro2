@@ -49,6 +49,8 @@
     <Compile Include="GenericType.cs" />
     <Compile Include="GenericTypeInstantiation.cs" />
     <Compile Include="IDependency.cs" />
+    <Compile Include="IDependencyMap.cs" />
+    <Compile Include="IFactoryMap.cs" />
     <Compile Include="IInstantiationPoint.cs" />
     <Compile Include="InstantiationPoint.cs" />
     <Compile Include="IResolver.cs" />
